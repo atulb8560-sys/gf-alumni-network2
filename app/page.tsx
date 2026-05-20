@@ -193,9 +193,6 @@ export default function Home() {
       document.body.removeChild(successBox)
       setIsVerified(true)
 
-      
-      window.location.href = "https://app.powerbi.com/view?r=eyJrIjoiMDc2NzI3MDMtNjFjMS00NDQxLWI2OTMtYWRhZTU5NmI4ODRlIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
-    }, 2300)
   }, 1200)
 }
     } else {
@@ -777,7 +774,7 @@ onMouseLeave={(e) => {
         <iframe
           className="report-frame"
           title="GF_India_Dashboard"
-          src={POWERBI_URL}
+          src= "https://app.powerbi.com/view?r=eyJrIjoiMDc2NzI3MDMtNjFjMS00NDQxLWI2OTMtYWRhZTU5NmI4ODRlIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
           style={{
             border: "none",
             width: "84vw",
