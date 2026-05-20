@@ -192,14 +192,14 @@ export default function Home() {
     setTimeout(() => {
       document.body.removeChild(successBox)
       setIsVerified(true)
+    }, 1200)
 
-  }, 1200)
+  }, 800)
+
+} else {
+  setLoading(false)
+  setError(true)
 }
-    } else {
-      setLoading(false)
-      setError(true)
-    }
-  }
 
   return (
     <div
