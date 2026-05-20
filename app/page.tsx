@@ -104,7 +104,6 @@ export default function Home() {
       .eq("email", email)
       .single()
 
-    if (data) {
       if (data) {
   setLoading(true)
 
@@ -200,6 +199,7 @@ export default function Home() {
   setLoading(false)
   setError(true)
 }
+  }
 
   return (
     <div
@@ -789,7 +789,4 @@ onMouseLeave={(e) => {
       </main>
     </div>
   )
-}
-  
-}
 }
