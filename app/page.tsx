@@ -196,7 +196,7 @@ export default function Home() {
   setIsVerified(true)
 
   setDashboardUrl(
-    "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
+    "https://app.powerbi.com/view?r=eyJrIjoiMDc2NzI3MDMtNjFjMS00NDQxLWI2OTMtYWRhZTU5NmI4ODRlIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
   )
 
 }, 1200)
