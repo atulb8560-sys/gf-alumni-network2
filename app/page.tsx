@@ -802,25 +802,13 @@ onMouseLeave={(e) => {
           title="GF_India_Dashboard"
           src= {dashboardUrl}
           style={{
-            border: "none",
-            width: isVerified ? "100vw" : "84vw",
-            height: 
-            window.innerWidth <= 768
-            ? "100px"
-            : isVerified
-            ? "100vh"
-            : "84vh",
-            transform:
-            window.innerWidth <= 768
-            ? "none"
-            : isVerified
-            ? "none"
-            : "scale(1.23)",
-            transformOrigin: "top center",
+  border: "none",
+  width: isVerified ? "100vw" : "84vw",
+  height: isVerified ? "100vh" : "84vh",
+  transform: isVerified ? "none" : "scale(1.23)",
+  transformOrigin: "top center",
+}}
             
-           
-
-          }}
           allowFullScreen
         />
       </main>
