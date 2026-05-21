@@ -80,11 +80,11 @@ export default function Home() {
 const [showDesktopModeWarning, setShowDesktopModeWarning] = useState(false)
 
 useEffect(() => {
-  const isMobileDevice =
-    /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+  const isTouchDevice =
+    navigator.maxTouchPoints > 0
 
   const isDesktopModeOnMobile =
-    isMobileDevice && window.innerWidth > 768
+    isTouchDevice && window.innerWidth > 768
 
   setShowDesktopModeWarning(isDesktopModeOnMobile)
 }, [])
