@@ -265,7 +265,7 @@ async function checkEmail() {
   <div
     style={{
       fontSize: "120px",
-      lineHeight: "120px",
+      lineHeight: "130px",
     }}
   >
     💻
@@ -275,7 +275,7 @@ async function checkEmail() {
     style={{
       fontSize: "55px",
       textAlign: "center",
-      lineHeight: "37px",
+      lineHeight: "40px",
     }}
   >
     Desktop / Laptop Recommended
@@ -284,10 +284,10 @@ async function checkEmail() {
 
 <div
   style={{
-    fontSize: "45px",
-    lineHeight: "35px",
+    fontSize: "40px",
+    lineHeight: "40px",
     textAlign: "center",
-    maxWidth: "700px",
+    maxWidth: "650px",
     opacity: 0.9,
   }}
 >
