@@ -74,6 +74,9 @@ export default function Home() {
   const [isVerified, setIsVerified] = useState(false)
   const [activePage, setActivePage] = useState("overview")
   const [mobileMenu, setMobileMenu] = useState(false)
+  const [dashboardUrl, setDashboardUrl] = useState(
+  "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
+)
 
   function handleNavClick(pageKey: string, locked: boolean) {
     setActivePage(pageKey)
@@ -189,9 +192,14 @@ export default function Home() {
     }, 1800)
 
     setTimeout(() => {
-      document.body.removeChild(successBox)
-      setIsVerified(true)
-    }, 1200)
+  document.body.removeChild(successBox)
+  setIsVerified(true)
+
+  setDashboardUrl(
+    "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
+  )
+
+}, 1200)
 
   }, 800)
 
@@ -774,7 +782,7 @@ onMouseLeave={(e) => {
         <iframe
           className="report-frame"
           title="GF_India_Dashboard"
-          src= "https://app.powerbi.com/view?r=eyJrIjoiMDc2NzI3MDMtNjFjMS00NDQxLWI2OTMtYWRhZTU5NmI4ODRlIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
+          src= {dashboardUrl}
           style={{
             border: "none",
             width: "84vw",
