@@ -287,7 +287,7 @@ async function checkEmail() {
     fontSize: "45px",
     lineHeight: "35px",
     textAlign: "center",
-    maxWidth: "500px",
+    maxWidth: "700px",
     opacity: 0.9,
   }}
 >
