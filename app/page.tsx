@@ -78,8 +78,6 @@ export default function Home() {
   const [activePage, setActivePage] = useState("overview")
   const [dashboardUrl, setDashboardUrl] = useState(
   "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
-) const [dashboardUrl, setDashboardUrl] = useState(
-  "https://app.powerbi.com/view?r=xxxx"
 )
 
 if (typeof window !== "undefined" && window.innerWidth <= 768) {
