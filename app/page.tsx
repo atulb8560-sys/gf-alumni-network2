@@ -204,6 +204,7 @@ async function checkEmail() {
 
   return (
     <div
+    className={isVerified ? "verified-view" : ""}
       style={{
 
          width: "100vw",
@@ -232,10 +233,10 @@ async function checkEmail() {
       top: "180px",
       left: "50%",
       transform: "translateX(-50%)",
-      background: "rgba(7, 231, 247, 0.95)",
-      color: "#060606",
+      background: "#118DFF",
+      color: "#ffff",
       padding: "12px 18px",
-      borderRadius: "14px",
+      borderRadius: "10px",
       fontSize: "12px",
       fontWeight: 600,
       zIndex: 999999,
@@ -360,6 +361,27 @@ async function checkEmail() {
   100% {
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  .verified-view .desktop-sidebar {
+    display: none !important;
+  }
+
+  .verified-view .report-area {
+    width: 100vw !important;
+    height: 100vh !important;
+    margin-top: 0px !important;
+    overflow: hidden !important;
+  }
+
+  .verified-view .report-frame {
+    width: 100vw !important;
+    height: 100vh !important;
+    min-width: 100vw !important;
+    transform: none !important;
+    margin-left: 0px !important;
   }
 }
 
