@@ -261,33 +261,6 @@ export default function Home() {
             100% { transform: translateX(0); }
           }
 
-          @media (max-width: 768px) {
-            .desktop-sidebar {
-              display: none !important;
-            }
-
-            .mobile-header {
-              display: flex !important;
-            }
-
-            .report-area {
-              width: 100vw !important;
-              height: calc(100vh - 58px) !important;
-              margin-top: 58px !important;
-            }
-
-            .report-frame {
-              width: 100vw !important;
-              height: calc(100vh - 58px) !important;
-              transform: none !important;
-            }
-          }
-
-          @media (min-width: 769px) {
-            .mobile-header {
-              display: none !important;
-            }
-          }
         `}
       </style>
 
