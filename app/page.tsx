@@ -78,9 +78,19 @@ export default function Home() {
 )
 
   function handleNavClick(pageKey: string, locked: boolean) {
-    setActivePage(pageKey)
+  setActivePage(pageKey)
 
-  async function checkEmail() {
+  if (!locked) {
+    return
+  }
+
+  if (!isVerified) {
+    setOpen(true)
+    return
+  }
+}
+
+async function checkEmail() {
     if (!email) return
 
     setLoading(true)
@@ -192,7 +202,7 @@ export default function Home() {
   setLoading(false)
   setError(true)
 }
-  }
+}
 
   return (
     <div
