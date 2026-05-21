@@ -237,66 +237,71 @@ async function checkEmail() {
     >
 {showDesktopModeWarning && (
       <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          background: "#031A39",
-          color: "#fff",
-          zIndex: 9999999,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-          padding: "30px",
-          fontFamily: "DIN, Poppins, sans-serif",
-        }}
-      >
-        <div>
-          <div
   style={{
-    fontWeight: 800,
-    marginBottom: "18px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: "20px",
+    justifyContent: "center",
+    textAlign: "center",
+    width: "100%",
+    maxWidth: "900px",
+    margin: "0 auto",
+    padding: "40px 25px",
+    color: "#ffffff",
+    fontFamily: "DIN, Poppins, Inter, sans-serif",
   }}
 >
   <div
     style={{
-      fontSize: "120px",
-      lineHeight: "130px",
+      width: "170px",
+      height: "170px",
+      borderRadius: "50%",
+      background: "rgba(255,255,255,0.08)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      marginBottom: "35px",
+      boxShadow: "0 0 40px rgba(255,255,255,0.08)",
+      backdropFilter: "blur(10px)",
     }}
   >
-    💻
+    <div
+      style={{
+        fontSize: "95px",
+        lineHeight: "95px",
+      }}
+    >
+      💻
+    </div>
   </div>
 
   <div
     style={{
-      fontSize: "55px",
-      textAlign: "center",
-      lineHeight: "40px",
+      fontSize: "52px",
+      fontWeight: 800,
+      lineHeight: "64px",
+      marginBottom: "28px",
+      letterSpacing: "-1px",
+      maxWidth: "800px",
     }}
   >
     Desktop / Laptop Recommended
   </div>
-</div>
 
-<div
-  style={{
-    fontSize: "40px",
-    lineHeight: "55px",
-    textAlign: "center",
-    maxWidth: "600px",
-    opacity: 0.9,
-  }}
->
-  For better experience please open this dashboard on a 
-  <br />
-  desktop or laptop.
-</div>
+  <div
+    style={{
+      fontSize: "28px",
+      lineHeight: "46px",
+      opacity: 0.9,
+      maxWidth: "760px",
+      fontWeight: 400,
+    }}
+  >
+    For better experience please open this dashboard on a desktop or laptop.
+  
       </div>
       </div>
+
     )}
       <style>
         {`
