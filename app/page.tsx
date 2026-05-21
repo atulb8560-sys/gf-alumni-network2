@@ -396,70 +396,7 @@ onMouseLeave={(e) => {
         </div>
       </aside>
 
-      {/* MOBILE HEADER */}
-      <div
-        className="mobile-header"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "58px",
-          background: "#06264A",
-          color: "#fff",
-          zIndex: 999,
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "0 16px",
-        }}
-      >
-        <div style={{ fontWeight: 800, fontSize: "15px" }}>GF Alumni Network</div>
-
-        <button
-          onClick={() => setMobileMenu(true)}
-          style={{
-            background: "transparent",
-            transition: "0.2s",
-            color: "#fff",
-            border: "none",
-            fontSize: "28px",
-            cursor: "pointer",
-          }}
-        >
-          ☰
-        </button>
-      </div>
-
-      {/* MOBILE DRAWER */}
-      {mobileMenu && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.45)",
-            zIndex: 2000,
-          }}
-          onClick={() => setMobileMenu(false)}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              width: "230px",
-              height: "100vh",
-              background: "#06264A",
-              color: "#fff",
-              paddingTop: "20px",
-            }}
-          >
-            <div
-              style={{
-                padding: "0 18px 20px",
-                fontSize: "18px",
-                fontWeight: 800,
-              }}
-            >
-              Gandhi Fellowship
-            </div>
+      
 
             {navItems.map((item) => (
   <button
