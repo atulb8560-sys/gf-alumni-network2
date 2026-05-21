@@ -71,22 +71,19 @@ export default function Home() {
   const [email, setEmail] = useState("")
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [mobileMenu, setMobileMenu] = useState(false)
   const [isVerified, setIsVerified] = useState(false)
   const [activePage, setActivePage] = useState("overview")
   const [dashboardUrl, setDashboardUrl] = useState(
   "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
-)
+) 
 
   function handleNavClick(pageKey: string, locked: boolean) {
   setActivePage(pageKey)
+  setMobileMenu(false)
 
-  if (!locked) {
-    return
-  }
-
-  if (!isVerified) {
+  if (locked && !isVerified) {
     setOpen(true)
-    return
   }
 }
 
@@ -256,7 +253,38 @@ async function checkEmail() {
             100% { transform: translateX(0); }
           }
 
+          @media (max-width: 768px) {
+  .desktop-sidebar {
+    display: none !important;
+  }
+
+  .mobile-topbar {
+    display: flex !important;
+  }
+
+  .report-area {
+    width: 100vw !important;
+    height: calc(100vh - 70px) !important;
+    margin-top: 70px !important;
+    overflow: hidden !important;
+  }
+
+  .report-frame {
+    width: 100vw !important;
+    height: calc(100vh - 70px) !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-topbar {
+    display: none !important;
+  }
+}
+
         `}
+
+        
       </style>
 
       {/* DESKTOP SIDEBAR */}
@@ -390,6 +418,131 @@ onMouseLeave={(e) => {
           Always a Fellow.
         </div>
       </aside>
+
+      {/* MOBILE TOP BAR */}
+<div
+  className="mobile-topbar"
+  style={{
+    display: "none",
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: "70px",
+    background: "#ffffff",
+    zIndex: 9999,
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "0 12px",
+    borderBottom: "1px solid #e5e7eb",
+  }}
+>
+  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+    <img
+      src="https://unsrekjwlfqdvqvvfukg.supabase.co/storage/v1/object/sign/Popup-Images/Logo%20alumni%20network.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOTQ3ZDQyNS1kYjg2LTQ1ZjItOGE3NC00OGZiOGIxODY0ZjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQb3B1cC1JbWFnZXMvTG9nbyBhbHVtbmkgbmV0d29yay5wbmciLCJpYXQiOjE3NzkyNzUxNzEsImV4cCI6MjA5NDYzNTE3MX0.BglGBovW2mB32Miabn-pTwRRcHd2x0SYM6K57rzE26w"
+      alt="Logo"
+      style={{
+        width: "58px",
+        height: "58px",
+        objectFit: "contain",
+      }}
+    />
+
+    <div>
+      <div style={{ fontSize: "13px", fontWeight: 800, color: "#111827" }}>
+        Gandhi Fellowship Alumni Network
+      </div>
+      <div style={{ fontSize: "10px", color: "#4b5563", marginTop: "2px" }}>
+        Building Connection, Creating Impact.
+      </div>
+    </div>
+  </div>
+
+  <button
+    onClick={() => setMobileMenu(true)}
+    style={{
+      width: "38px",
+      height: "38px",
+      border: "none",
+      background: "#031A39",
+      color: "#fff",
+      borderRadius: "8px",
+      fontSize: "24px",
+      cursor: "pointer",
+    }}
+  >
+    ☰
+  </button>
+</div>
+
+{/* MOBILE DRAWER */}
+{mobileMenu && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,0.35)",
+      zIndex: 10000,
+    }}
+    onClick={() => setMobileMenu(false)}
+  >
+    <div
+      onClick={(e) => e.stopPropagation()}
+      style={{
+        width: "230px",
+        height: "100vh",
+        background: "#031A39",
+        color: "#fff",
+        paddingTop: "20px",
+      }}
+    >
+      <div
+        style={{
+          padding: "0 18px 20px",
+          fontSize: "16px",
+          fontWeight: 800,
+        }}
+      >
+        Menu
+      </div>
+
+      {navItems.map((item) => (
+        <button
+          key={item.key}
+          onClick={() => handleNavClick(item.key, item.locked)}
+          style={{
+            width: "100%",
+            height: "44px",
+            border: "none",
+            background: "transparent",
+            color: "#fff",
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            padding: "0 16px",
+            fontSize: "14px",
+            fontWeight: 700,
+            cursor: "pointer",
+            textAlign: "left",
+            fontFamily: "DIN, Poppins, Inter, sans-serif",
+          }}
+        >
+          <img
+            src={item.icon}
+            alt={item.label}
+            style={{
+              width: "18px",
+              height: "18px",
+              objectFit: "contain",
+              flexShrink: 0,
+            }}
+          />
+          <span>{item.label}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+)}
 
       {/* LOGIN MODAL */}
       <Modal
@@ -651,9 +804,20 @@ onMouseLeave={(e) => {
           style={{
             border: "none",
             width: isVerified ? "100vw" : "84vw",
-            height: isVerified ? "100vh" : "84vh",
-            transform: isVerified ? "none" : "scale(1.23)",
+            height: 
+            window.innerWidth <= 768
+            ? "100px"
+            : isVerified
+            ? "100vh"
+            : "84vh",
+            transform:
+            window.innerWidth <= 768
+            ? "none"
+            : isVerified
+            ? "none"
+            : "scale(1.23)",
             transformOrigin: "top center",
+            
            
 
           }}
