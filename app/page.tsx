@@ -242,7 +242,7 @@ async function checkEmail() {
       zIndex: 999999,
       backdropFilter: "blur(8px)",
       boxShadow: "0 8px 25px rgba(0,0,0,0.18)",
-      animation: "fadeOut 5s forwards",
+      animation: "fadeOut 4s forwards",
       whiteSpace: "nowrap",
     }}
   >
