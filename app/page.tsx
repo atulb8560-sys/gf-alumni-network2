@@ -252,15 +252,48 @@ async function checkEmail() {
         }}
       >
         <div>
-          <div style={{ fontSize: "60px", fontWeight: 800, marginBottom: "14px" }}>
-            <span style={{ fontSize: "60px" }}>💻</span>
-            <br />
-            Desktop / Laptop Recommended
-          </div>
-          <div style={{ fontSize: "45px", lineHeight: "26px" }}>
-            For better experience please open this dashboard on a desktop or laptop.
-          </div>
-        </div>
+          <div
+  style={{
+    fontWeight: 800,
+    marginBottom: "18px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "14px",
+  }}
+>
+  <div
+    style={{
+      fontSize: "85px",
+      lineHeight: "85px",
+    }}
+  >
+    💻
+  </div>
+
+  <div
+    style={{
+      fontSize: "28px",
+      textAlign: "center",
+      lineHeight: "34px",
+    }}
+  >
+    Desktop / Laptop Recommended
+  </div>
+</div>
+
+<div
+  style={{
+    fontSize: "18px",
+    lineHeight: "30px",
+    textAlign: "center",
+    maxWidth: "500px",
+    opacity: 0.9,
+  }}
+>
+  For better experience please open this dashboard on a desktop or laptop.
+</div>
+      </div>
       </div>
     )}
       <style>
