@@ -68,10 +68,12 @@ const navItems = [
 
 export default function Home() {
   const [open, setOpen] = useState(false)
+  const [mobileNotice, setMobileNotice] = useState(
+  typeof window !== "undefined" && window.innerWidth <= 768
+)
   const [email, setEmail] = useState("")
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [mobileMenu, setMobileMenu] = useState(false)
   const [isVerified, setIsVerified] = useState(false)
   const [activePage, setActivePage] = useState("overview")
   const [dashboardUrl, setDashboardUrl] = useState(
@@ -80,7 +82,6 @@ export default function Home() {
 
   function handleNavClick(pageKey: string, locked: boolean) {
   setActivePage(pageKey)
-  setMobileMenu(false)
 
   if (locked && !isVerified) {
     setOpen(true)
@@ -204,6 +205,7 @@ async function checkEmail() {
   return (
     <div
       style={{
+
          width: "100vw",
     height: "610px",
     overflow: "hidden",
@@ -218,10 +220,34 @@ async function checkEmail() {
     transition: "0.2s",
     borderRadius: "8px",
     touchAction: "pan-x pan-y",
+    
       }}
-
       
     >
+      {mobileNotice && (
+  <div
+    style={{
+      position: "fixed",
+      textAlign :"center",
+      top: "180px",
+      left: "50%",
+      transform: "translateX(-50%)",
+      background: "rgba(7, 231, 247, 0.95)",
+      color: "#060606",
+      padding: "12px 18px",
+      borderRadius: "14px",
+      fontSize: "12px",
+      fontWeight: 600,
+      zIndex: 999999,
+      backdropFilter: "blur(8px)",
+      boxShadow: "0 8px 25px rgba(0,0,0,0.18)",
+      animation: "fadeOut 5s forwards",
+      whiteSpace: "nowrap",
+    }}
+  >
+    For better experience use Desktop/Laptop
+  </div>
+)}
       <style>
         {`
         html, body {
@@ -252,33 +278,88 @@ async function checkEmail() {
             80% { transform: translateX(5px); }
             100% { transform: translateX(0); }
           }
-
-          @media (max-width: 768px) {
+@media (max-width: 768px) {
   .desktop-sidebar {
-    display: none !important;
-  }
-
-  .mobile-topbar {
     display: flex !important;
+    margin-left: 0px !important;
+    width: 100px !important;
   }
 
   .report-area {
-    width: 100vw !important;
-    height: calc(100vh - 70px) !important;
-    margin-top: 70px !important;
-    overflow: hidden !important;
+    width: calc(130vw - 200px) !important;
+    height: 100vh !important;
+    margin-top: 5px !important;
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
   }
 
   .report-frame {
-    width: 100vw !important;
-    height: calc(100vh - 70px) !important;
+    width: 1000px !important;
+    min-width: 970px !important;
+    height: 660px !important;
     transform: none !important;
+    transform-origin: top left !important;
+    margin-left: -3px !important;
   }
 }
 
-@media (min-width: 769px) {
-  .mobile-topbar {
-    display: none !important;
+@media (max-width: 768px) {
+
+  .sidebar-btn {
+    height: 25px !important;
+    padding: 0 8px !important;
+    gap: 5px !important;
+
+    font-size: 9px !important;
+    font-weight: 400 !important;
+
+    border-bottom: 0px solid rgba(255,255,255,0.06) !important;
+  }
+
+  .sidebar-btn img {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+}
+  @media (max-width: 768px) {
+
+  .clear-btn {
+    height: 26px !important;
+    font-size: 9px !important;
+    margin: 0 6px 18px !important;
+    margin-bottom: 154px !important;
+    border-radius: 5px !important;
+  }
+
+  .sidebar-slogan {
+    font-size: 10px !important;
+    line-height: 16px !important;
+    margin-bottom: 25px !important;
+    padding: 0 4px !important;
+  }
+
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0px);
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -303,6 +384,7 @@ async function checkEmail() {
           borderRadius: "0",
           overflow: "hidden",
           
+          
         }}
       >
         {/* LOGO */}
@@ -317,6 +399,8 @@ async function checkEmail() {
     border:"1px solid #e6e6e6",
     padding: "0px",
   }}
+
+  
 >
   <img
     src="https://unsrekjwlfqdvqvvfukg.supabase.co/storage/v1/object/sign/Popup-Images/Logo%20alumni%20network.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOTQ3ZDQyNS1kYjg2LTQ1ZjItOGE3NC00OGZiOGIxODY0ZjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQb3B1cC1JbWFnZXMvTG9nbyBhbHVtbmkgbmV0d29yay5wbmciLCJpYXQiOjE3NzkyNzUxNzEsImV4cCI6MjA5NDYzNTE3MX0.BglGBovW2mB32Miabn-pTwRRcHd2x0SYM6K57rzE26w"
@@ -335,7 +419,7 @@ async function checkEmail() {
         {/* NAVIGATION */}
         <nav style={{ paddingTop: "5px", flex: 1 }}>
           {navItems.map((item) => (
-            <button
+            <button className="sidebar-btn"
               key={item.key}
               onClick={() => handleNavClick(item.key, item.locked)}
                 onMouseEnter={(e) => {
@@ -384,7 +468,8 @@ onMouseLeave={(e) => {
 
         {/* CLEAR FILTERS */}
         <button
-          onClick={() => setActivePage("overview")}
+  className="clear-btn"
+  onClick={() => setActivePage("overview")}
           style={{
             margin: "0 12px 24px",
             height: "32px",
@@ -405,6 +490,7 @@ onMouseLeave={(e) => {
 
         {/* SLOGAN */}
         <div
+        className="sidebar-slogan"
           style={{
             textAlign: "center",
             fontWeight: 400,
@@ -419,130 +505,7 @@ onMouseLeave={(e) => {
         </div>
       </aside>
 
-      {/* MOBILE TOP BAR */}
-<div
-  className="mobile-topbar"
-  style={{
-    display: "none",
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: "70px",
-    background: "#ffffff",
-    zIndex: 9999,
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: "0 12px",
-    borderBottom: "1px solid #e5e7eb",
-  }}
->
-  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-    <img
-      src="https://unsrekjwlfqdvqvvfukg.supabase.co/storage/v1/object/sign/Popup-Images/Logo%20alumni%20network.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOTQ3ZDQyNS1kYjg2LTQ1ZjItOGE3NC00OGZiOGIxODY0ZjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQb3B1cC1JbWFnZXMvTG9nbyBhbHVtbmkgbmV0d29yay5wbmciLCJpYXQiOjE3NzkyNzUxNzEsImV4cCI6MjA5NDYzNTE3MX0.BglGBovW2mB32Miabn-pTwRRcHd2x0SYM6K57rzE26w"
-      alt="Logo"
-      style={{
-        width: "58px",
-        height: "58px",
-        objectFit: "contain",
-      }}
-    />
 
-    <div>
-      <div style={{ fontSize: "13px", fontWeight: 800, color: "#111827" }}>
-        Gandhi Fellowship Alumni Network
-      </div>
-      <div style={{ fontSize: "10px", color: "#4b5563", marginTop: "2px" }}>
-        Building Connection, Creating Impact.
-      </div>
-    </div>
-  </div>
-
-  <button
-    onClick={() => setMobileMenu(true)}
-    style={{
-      width: "38px",
-      height: "38px",
-      border: "none",
-      background: "#031A39",
-      color: "#fff",
-      borderRadius: "8px",
-      fontSize: "24px",
-      cursor: "pointer",
-    }}
-  >
-    ☰
-  </button>
-</div>
-
-{/* MOBILE DRAWER */}
-{mobileMenu && (
-  <div
-    style={{
-      position: "fixed",
-      inset: 0,
-      background: "rgba(0,0,0,0.35)",
-      zIndex: 10000,
-    }}
-    onClick={() => setMobileMenu(false)}
-  >
-    <div
-      onClick={(e) => e.stopPropagation()}
-      style={{
-        width: "230px",
-        height: "100vh",
-        background: "#031A39",
-        color: "#fff",
-        paddingTop: "20px",
-      }}
-    >
-      <div
-        style={{
-          padding: "0 18px 20px",
-          fontSize: "16px",
-          fontWeight: 800,
-        }}
-      >
-        Menu
-      </div>
-
-      {navItems.map((item) => (
-        <button
-          key={item.key}
-          onClick={() => handleNavClick(item.key, item.locked)}
-          style={{
-            width: "100%",
-            height: "44px",
-            border: "none",
-            background: "transparent",
-            color: "#fff",
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-            padding: "0 16px",
-            fontSize: "14px",
-            fontWeight: 700,
-            cursor: "pointer",
-            textAlign: "left",
-            fontFamily: "DIN, Poppins, Inter, sans-serif",
-          }}
-        >
-          <img
-            src={item.icon}
-            alt={item.label}
-            style={{
-              width: "18px",
-              height: "18px",
-              objectFit: "contain",
-              flexShrink: 0,
-            }}
-          />
-          <span>{item.label}</span>
-        </button>
-      ))}
-    </div>
-  </div>
-)}
 
       {/* LOGIN MODAL */}
       <Modal
@@ -807,6 +770,7 @@ onMouseLeave={(e) => {
   height: isVerified ? "100vh" : "84vh",
   transform: isVerified ? "none" : "scale(1.23)",
   transformOrigin: "top center",
+  marginLeft : "-45px"
 }}
             
           allowFullScreen
