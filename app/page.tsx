@@ -78,7 +78,53 @@ export default function Home() {
   const [activePage, setActivePage] = useState("overview")
   const [dashboardUrl, setDashboardUrl] = useState(
   "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
-) 
+) const [dashboardUrl, setDashboardUrl] = useState(
+  "https://app.powerbi.com/view?r=xxxx"
+)
+
+if (typeof window !== "undefined" && window.innerWidth <= 768) {
+  return (
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        background: "#031A39",
+        color: "#fff",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        padding: "30px",
+        fontFamily: "DIN, Poppins, sans-serif",
+      }}
+    >
+      <div>
+        <div
+          style={{
+            fontSize: "22px",
+            fontWeight: 700,
+            marginBottom: "14px",
+          }}
+        >
+          💻 Better Experience Recommended
+        </div>
+
+        <div
+          style={{
+            fontSize: "15px",
+            lineHeight: "26px",
+            opacity: 0.9,
+          }}
+        >
+          For better experience please open this dashboard
+          on a desktop or laptop.
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function handleNavClick(pageKey: string, locked: boolean) {
 
   function handleNavClick(pageKey: string, locked: boolean) {
   setActivePage(pageKey)
@@ -246,7 +292,7 @@ async function checkEmail() {
       whiteSpace: "nowrap",
     }}
   >
-    For better experience use Desktop/Laptop
+    For better experience please open this dashboard on a desktop or laptop.
   </div>
 )}
       <style>
