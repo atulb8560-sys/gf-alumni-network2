@@ -285,13 +285,15 @@ async function checkEmail() {
 <div
   style={{
     fontSize: "45px",
-    lineHeight: "30px",
+    lineHeight: "35px",
     textAlign: "center",
     maxWidth: "500px",
     opacity: 0.9,
   }}
 >
-  For better experience please open this dashboard on a desktop or laptop.
+  For better experience please open this dashboard on a 
+  <br />
+  desktop or laptop.
 </div>
       </div>
       </div>
