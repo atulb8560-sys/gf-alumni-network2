@@ -259,7 +259,7 @@ async function checkEmail() {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: "14px",
+    gap: "20px",
   }}
 >
   <div
