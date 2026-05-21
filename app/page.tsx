@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Modal from "react-modal"
 import { supabase } from "@/lib/supabase"
 
 const POWERBI_URL =
   "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
 
+  
 const navItems = [
   {
     key: "overview",
@@ -68,9 +69,6 @@ const navItems = [
 
 export default function Home() {
   const [open, setOpen] = useState(false)
-  const [mobileNotice, setMobileNotice] = useState(
-  typeof window !== "undefined" && window.innerWidth <= 768
-)
   const [email, setEmail] = useState("")
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -79,6 +77,18 @@ export default function Home() {
   const [dashboardUrl, setDashboardUrl] = useState(
   "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
 ) 
+const [showDesktopModeWarning, setShowDesktopModeWarning] = useState(false)
+
+useEffect(() => {
+  const isMobileDevice =
+    /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+
+  const isDesktopModeOnMobile =
+    isMobileDevice && window.innerWidth > 768
+
+  setShowDesktopModeWarning(isDesktopModeOnMobile)
+}, [])
+
 
   function handleNavClick(pageKey: string, locked: boolean) {
   setActivePage(pageKey)
@@ -225,30 +235,32 @@ async function checkEmail() {
       }}
       
     >
-      {mobileNotice && (
-  <div
-    style={{
-      position: "fixed",
-      textAlign :"center",
-      top: "180px",
-      left: "50%",
-      transform: "translateX(-50%)",
-      background: "#118DFF",
-      color: "#ffff",
-      padding: "12px 18px",
-      borderRadius: "1px",
-      fontSize: "12px",
-      fontWeight: 600,
-      zIndex: 999999,
-      backdropFilter: "blur(8px)",
-      boxShadow: "0 8px 25px rgba(0,0,0,0.18)",
-      animation: "fadeOut 5s forwards",
-      whiteSpace: "nowrap",
-    }}
-  >
-    For better experience use Desktop/Laptop
-  </div>
-)}
+{showDesktopModeWarning && (
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          background: "#031A39",
+          color: "#fff",
+          zIndex: 9999999,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          padding: "30px",
+          fontFamily: "DIN, Poppins, sans-serif",
+        }}
+      >
+        <div>
+          <div style={{ fontSize: "22px", fontWeight: 800, marginBottom: "14px" }}>
+            💻 Better Experience Recommended
+          </div>
+          <div style={{ fontSize: "15px", lineHeight: "26px" }}>
+            For better experience please open this dashboard on a desktop or laptop.
+          </div>
+        </div>
+      </div>
+    )}
       <style>
         {`
         html, body {
