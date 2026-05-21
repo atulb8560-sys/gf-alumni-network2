@@ -285,9 +285,9 @@ async function checkEmail() {
 <div
   style={{
     fontSize: "40px",
-    lineHeight: "40px",
+    lineHeight: "55px",
     textAlign: "center",
-    maxWidth: "650px",
+    maxWidth: "600px",
     opacity: 0.9,
   }}
 >
