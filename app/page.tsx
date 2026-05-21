@@ -73,27 +73,12 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [isVerified, setIsVerified] = useState(false)
   const [activePage, setActivePage] = useState("overview")
-  const [mobileMenu, setMobileMenu] = useState(false)
   const [dashboardUrl, setDashboardUrl] = useState(
   "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
 )
 
   function handleNavClick(pageKey: string, locked: boolean) {
     setActivePage(pageKey)
-
-    if (!locked) {
-      setMobileMenu(false)
-      return
-    }
-
-    if (!isVerified) {
-      setOpen(true)
-      setMobileMenu(false)
-      return
-    }
-
-    setMobileMenu(false)
-  }
 
   async function checkEmail() {
     if (!email) return
@@ -395,47 +380,6 @@ onMouseLeave={(e) => {
           Always a Fellow.
         </div>
       </aside>
-
-      
-
-            {navItems.map((item) => (
-  <button
-    key={item.key}
-    onClick={() => handleNavClick(item.key, item.locked)}
-    style={{
-      width: "100%",
-      height: "46px",
-      border: "none",
-      background: "transparent",
-      color: "#fff",
-      display: "flex",
-      alignItems: "center",
-      gap: "12px",
-      padding: "0 16px",
-      fontSize: "14px",
-      fontWeight: 700,
-      cursor: "pointer",
-      textAlign: "left",
-      fontFamily: "DIN, Poppins, Inter, sans-serif",
-    }}
-  >
-    <img
-      src={item.icon}
-      alt={item.label}
-      style={{
-        width: "18px",
-        height: "18px",
-        objectFit: "contain",
-        flexShrink: 0,
-      }}
-    />
-
-    <span>{item.label}</span>
-  </button>
-))}
-          </div>
-        </div>
-      )}
 
       {/* LOGIN MODAL */}
       <Modal
