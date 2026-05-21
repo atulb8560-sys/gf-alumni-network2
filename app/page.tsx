@@ -259,7 +259,7 @@ async function checkEmail() {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: "20px",
+    gap: "40px",
   }}
 >
   <div
@@ -275,7 +275,7 @@ async function checkEmail() {
     style={{
       fontSize: "55px",
       textAlign: "center",
-      lineHeight: "40px",
+      lineHeight: "60px",
     }}
   >
     Desktop / Laptop Recommended
@@ -285,9 +285,9 @@ async function checkEmail() {
 <div
   style={{
     fontSize: "30px",
-    lineHeight: "30px",
+    lineHeight: "50px",
     textAlign: "center",
-    maxWidth: "500px",
+    maxWidth: "600px",
     opacity: 0.9,
   }}
 >
