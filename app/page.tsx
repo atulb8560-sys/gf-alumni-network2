@@ -300,12 +300,13 @@ export default function Home() {
           background: "#031A39",
           color: "#fff",
           flexShrink: 0,
-          display: "flex",
+          display: isVerified ? "none" : "flex",
           flexDirection: "column",
           marginLeft: "90px",
           marginTop: "0px",
           borderRadius: "0",
           overflow: "hidden",
+          
         }}
       >
         {/* LOGO */}
@@ -771,11 +772,11 @@ onMouseLeave={(e) => {
       <main
         className="report-area"
         style={{
-          width: "calc(100vw - 151px)",
+          width: isVerified ? "100vw" : "calc(100vw - 151px)",
           height: "100vh",
           overflow: "hidden",
           display: "flex",
-          justifyContent: "center",
+          justifyContent: isVerified ? "flex-start" : "center",
           alignItems: "flex-start",
         }}
       >
@@ -785,9 +786,9 @@ onMouseLeave={(e) => {
           src= {dashboardUrl}
           style={{
             border: "none",
-            width: "84vw",
-            height: "84vh",
-            transform: "scale(1.23)",
+            width: isVerified ? "100vw" : "84vw",
+            height: isVerified ? "100vh" : "84vh",
+            transform: isVerified ? "none" : "scale(1.23)",
             transformOrigin: "top center",
            
 
