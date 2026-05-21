@@ -252,12 +252,12 @@ async function checkEmail() {
         }}
       >
         <div>
-          <div style={{ fontSize: "35px", fontWeight: 800, marginBottom: "14px" }}>
-            💻 
+          <div style={{ fontSize: "60px", fontWeight: 800, marginBottom: "14px" }}>
+            <span style={{ fontSize: "60px" }}>💻</span>
             <br />
             Desktop / Laptop Recommended
           </div>
-          <div style={{ fontSize: "15px", lineHeight: "26px" }}>
+          <div style={{ fontSize: "45px", lineHeight: "26px" }}>
             For better experience please open this dashboard on a desktop or laptop.
           </div>
         </div>
