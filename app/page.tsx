@@ -461,6 +461,13 @@ async function checkEmail() {
 }
 
 @media (max-width: 768px) {
+
+  .verified-view {
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+  }
+
   .verified-view .desktop-sidebar {
     display: none !important;
   }
@@ -468,26 +475,23 @@ async function checkEmail() {
   .verified-view .report-area {
     width: 100vw !important;
     height: 100vh !important;
-    margin-top: 0px !important;
-
-    overflow-x: auto !important;
-    overflow-y: auto !important;
-
-    touch-action: auto !important;
-
-    -webkit-overflow-scrolling: touch !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
   }
 
   .verified-view .report-frame {
-    width: 1200px !important;
-    min-width: 1200px !important;
+    width: 100% !important;
+    height: 100vh !important;
+    border: none !important;
 
-    height: 1000px !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
 
-    margin-left: 0px !important;
-
-    touch-action: auto !important;
+    transform: none !important;
+    margin-left: 0 !important;
   }
+
 }
 
 @keyframes mobileTipFade {
