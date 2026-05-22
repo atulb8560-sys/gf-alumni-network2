@@ -7,8 +7,6 @@ import { supabase } from "@/lib/supabase"
 const POWERBI_URL =
   "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
 
-  const FULL_DASHBOARD_URL =
-  "https://app.powerbi.com/view?r=eyJrIjoiMDc2NzI3MDMtNjFjMS00NDQxLWI2OTMtYWRhZTU5NmI4ODRlIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
   
 const navItems = [
   {
@@ -82,6 +80,7 @@ export default function Home() {
 const [showDesktopModeWarning, setShowDesktopModeWarning] = useState(false)
 const [iframeLoading, setIframeLoading] = useState(false)
 const [showMobileSuggestion, setShowMobileSuggestion] = useState(false)
+const [successShown, setSuccessShown] = useState(false)
 
 useEffect(() => {
   const isTouchDevice =
@@ -118,6 +117,88 @@ useEffect(() => {
   }
 }
 
+function showSuccessBox() {
+  const successBox = document.createElement("div")
+
+  successBox.innerHTML = `
+    <div style="
+      display:flex;
+      align-items:center;
+      gap:14px;
+    ">
+      
+      <div style="
+        width:48px;
+        height:48px;
+        min-width:48px;
+        border-radius:50%;
+        background:#22C55E;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:22px;
+        color:white;
+        font-weight:700;
+        box-shadow:0 0 30px rgba(34, 197, 94, 0.22);
+      ">
+        ✓
+      </div>
+
+      <div style="
+        display:flex;
+        flex-direction:column;
+      ">
+        <div style="
+          font-size:16px;
+          font-weight:700;
+          color:#0F172A;
+          margin-bottom:3px;
+        ">
+          You’re all set!
+        </div>
+
+        <div style="
+          font-size:13px;
+          color:#667085;
+          line-height:18px;
+          max-width:240px;
+        ">
+          Dive in and explore the data.
+        </div>
+      </div>
+    </div>
+  `
+
+  successBox.style.position = "fixed"
+  successBox.style.top = "50%"
+  successBox.style.left = "50%"
+  successBox.style.transform = "translate(-50%, -50%)"
+  successBox.style.padding = "18px 22px"
+  successBox.style.background =
+    "linear-gradient(135deg, #F4FFF7, #EEF7F1)"
+  successBox.style.border = "1px solid #A7E3BC"
+  successBox.style.borderRadius = "22px"
+  successBox.style.zIndex = "999999"
+  successBox.style.boxShadow = "0 10px 30px rgba(15, 23, 42, 0.12)"
+  successBox.style.opacity = "0"
+  successBox.style.transition = "all 0.45s ease"
+  successBox.style.backdropFilter = "blur(10px)"
+
+  document.body.appendChild(successBox)
+
+  setTimeout(() => {
+    successBox.style.opacity = "1"
+  }, 100)
+
+  setTimeout(() => {
+    successBox.style.opacity = "0"
+  }, 1800)
+
+  setTimeout(() => {
+    document.body.removeChild(successBox)
+  }, 2300)
+}
+
 async function checkEmail() {
     if (!email) return
 
@@ -131,99 +212,14 @@ async function checkEmail() {
       .single()
 
       if (data) {
-  setLoading(true)
-
-  setTimeout(() => {
-    setLoading(false)
-
-    const successBox = document.createElement("div")
-
-    successBox.innerHTML = `
-      <div style="
-        display:flex;
-        align-items:center;
-        gap:14px;
-      ">
-        
-        <div style="
-          width:48px;
-          height:48px;
-          min-width:48px;
-          border-radius:50%;
-          background:#22C55E;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          font-size:22px;
-          color:white;
-          font-weight:700;
-          box-shadow:0 0 30px rgba(34, 197, 94, 0.22);
-        ">
-          ✓
-        </div>
-
-        <div style="
-          display:flex;
-          flex-direction:column;
-        ">
-          <div style="
-            font-size:16px;
-            font-weight:700;
-            color:#0F172A;
-            margin-bottom:3px;
-          ">
-            You’re all set!
-          </div>
-
-          <div style="
-            font-size:13px;
-            color:#667085;
-            line-height:18px;
-            max-width:240px;
-          ">
-            Dive in and explore the data.
-          </div>
-        </div>
-      </div>
-    `
-
-    successBox.style.position = "fixed"
-    successBox.style.top = "50%"
-    successBox.style.left = "50%"
-    successBox.style.transform = "translate(-50%, -50%)"
-    successBox.style.padding = "18px 22px"
-    successBox.style.background =
-      "linear-gradient(135deg, #F4FFF7, #EEF7F1)"
-    successBox.style.border = "1px solid #A7E3BC"
-    successBox.style.borderRadius = "22px"
-    successBox.style.zIndex = "999999"
-    successBox.style.boxShadow = "0 10px 30px rgba(15, 23, 42, 0.12)"
-    successBox.style.opacity = "0"
-    successBox.style.transition = "all 0.45s ease"
-    successBox.style.backdropFilter = "blur(10px)"
-
-    document.body.appendChild(successBox)
-
-    setOpen(false)
-
-    setTimeout(() => {
-      successBox.style.opacity = "1"
-    }, 100)
-
-    setTimeout(() => {
-      successBox.style.opacity = "0"
-    }, 1800)
-
-    setTimeout(() => {
-  document.body.removeChild(successBox)
+  setOpen(false)
   setIsVerified(true)
   setIframeLoading(true)
+  setSuccessShown(false)
 
-  setDashboardUrl(FULL_DASHBOARD_URL)
-
-}, 1200)
-
-  }, 800)
+  setDashboardUrl(
+    "https://app.powerbi.com/view?r=eyJrIjoiMDc2NzI3MDMtNjFjMS00NDQxLWI2OTMtYWRhZTU5NmI4ODRlIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
+  )
 
 } else {
   setLoading(false)
@@ -947,7 +943,20 @@ onMouseLeave={(e) => {
   </div>
 )}
         <iframe
-        onLoad={() => setIframeLoading(false)}
+  onLoad={() => {
+  if (isVerified) {
+    setTimeout(() => {
+      setIframeLoading(false)
+
+      if (!successShown) {
+        setSuccessShown(true)
+        showSuccessBox()
+      }
+    }, 2000)
+  } else {
+    setIframeLoading(false)
+  }
+}}
           className="report-frame"
           title="GF_India_Dashboard"
           src= {dashboardUrl}
@@ -962,18 +971,6 @@ onMouseLeave={(e) => {
             
           allowFullScreen
         />
-        <iframe
-  src={FULL_DASHBOARD_URL}
-  title="Preload_Full_Dashboard"
-  style={{
-    position: "absolute",
-    width: "1px",
-    height: "1px",
-    opacity: 0,
-    pointerEvents: "none",
-    border: "none",
-  }}
-/>
       </main>
     </div>
   )
