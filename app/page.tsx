@@ -79,7 +79,7 @@ export default function Home() {
 ) 
 const [showDesktopModeWarning, setShowDesktopModeWarning] = useState(false)
 const [iframeLoading, setIframeLoading] = useState(false)
-const [showMobileSuggestion, setShowMobileSuggestion] = useState(true)
+const [showMobileSuggestion, setShowMobileSuggestion] = useState(false)
 
 useEffect(() => {
   const isTouchDevice =
@@ -92,21 +92,21 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-  const isMobile = window.innerWidth <= 768
+  const userAgent = navigator.userAgent || navigator.vendor
 
-  if (isMobile) {
-    setShowMobileSuggestion(true)
+  const isMobileDevice =
+    /android|iphone|ipad|ipod|windows phone/i.test(userAgent.toLowerCase())
 
-    const timer = setTimeout(() => {
-      setShowMobileSuggestion(false)
-    }, 4500)
+  if (!isMobileDevice) return
 
-    return () => clearTimeout(timer)
-  } else {
+  setShowMobileSuggestion(true)
+
+  const timer = setTimeout(() => {
     setShowMobileSuggestion(false)
-  }
-}, [])
+  }, 4500)
 
+  return () => clearTimeout(timer)
+}, [])
 
   function handleNavClick(pageKey: string, locked: boolean) {
   setActivePage(pageKey)
@@ -271,6 +271,7 @@ async function checkEmail() {
       boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
       animation: "mobileTipFade 4.5s ease forwards",
       whiteSpace: "nowrap",
+      textAlign : "center",
     }}
   >
     For better experience use Desktop/Laptop
@@ -487,25 +488,20 @@ async function checkEmail() {
 @keyframes mobileTipFade {
   0% {
     opacity: 0;
-    transform: translateX(-50%) translateY(-10px);
   }
 
   15% {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
   }
 
   75% {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
   }
 
   100% {
     opacity: 0;
-    transform: translateX(-50%) translateY(-10px);
   }
 }
-
         `}
 
         
