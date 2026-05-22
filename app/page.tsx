@@ -78,6 +78,8 @@ export default function Home() {
   "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
 ) 
 const [showDesktopModeWarning, setShowDesktopModeWarning] = useState(false)
+const [iframeLoading, setIframeLoading] = useState(false)
+const [showMobileSuggestion, setShowMobileSuggestion] = useState(true)
 
 useEffect(() => {
   const isTouchDevice =
@@ -87,6 +89,22 @@ useEffect(() => {
     isTouchDevice && window.innerWidth > 768
 
   setShowDesktopModeWarning(isDesktopModeOnMobile)
+}, [])
+
+useEffect(() => {
+  const isMobile = window.innerWidth <= 768
+
+  if (isMobile) {
+    setShowMobileSuggestion(true)
+
+    const timer = setTimeout(() => {
+      setShowMobileSuggestion(false)
+    }, 4500)
+
+    return () => clearTimeout(timer)
+  } else {
+    setShowMobileSuggestion(false)
+  }
 }, [])
 
 
@@ -197,6 +215,7 @@ async function checkEmail() {
     setTimeout(() => {
   document.body.removeChild(successBox)
   setIsVerified(true)
+  setIframeLoading(true)
 
   setDashboardUrl(
     "https://app.powerbi.com/view?r=eyJrIjoiMDc2NzI3MDMtNjFjMS00NDQxLWI2OTMtYWRhZTU5NmI4ODRlIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
@@ -235,6 +254,29 @@ async function checkEmail() {
       }}
       
     >
+{showMobileSuggestion && (
+  <div
+    style={{
+      position: "fixed",
+      top: "200px",
+      left: "50%",
+      transform: "translateX(-50%)",
+      zIndex: 999999,
+      background: "linear-gradient(135deg, #0b6fe1, #071266)",
+      color: "#ffffff",
+      padding: "10px 16px",
+      borderRadius: "999px",
+      fontSize: "14px",
+      fontWeight: 400,
+      boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
+      animation: "mobileTipFade 4.5s ease forwards",
+      whiteSpace: "nowrap",
+    }}
+  >
+    For better experience use Desktop/Laptop
+  </div>
+)}
+
 {showDesktopModeWarning && (
       <div
         style={{
@@ -326,6 +368,16 @@ async function checkEmail() {
             80% { transform: translateX(5px); }
             100% { transform: translateX(0); }
           }
+
+          @keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @media (max-width: 768px) {
   .desktop-sidebar {
     display: flex !important;
@@ -429,6 +481,28 @@ async function checkEmail() {
     min-width: 100vw !important;
     transform: none !important;
     margin-left: 0px !important;
+  }
+}
+
+@keyframes mobileTipFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+
+  15% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
   }
 }
 
@@ -827,9 +901,57 @@ onMouseLeave={(e) => {
           display: "flex",
           justifyContent: isVerified ? "flex-start" : "center",
           alignItems: "flex-start",
+          position: "relative",
         }}
       >
+        {iframeLoading && (
+  <div
+    style={{
+      position: "absolute",
+      inset: 0,
+      background: "#ffffff",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 9999,
+    }}
+  >
+    <div
+      style={{
+        width: "55px",
+        height: "55px",
+        border: "5px solid #E5E7EB",
+        borderTop: "5px solid #12239E",
+        borderRadius: "50%",
+        animation: "spin 1s linear infinite",
+        marginBottom: "20px",
+      }}
+    />
+
+    <div
+      style={{
+        fontSize: "18px",
+        fontWeight: 700,
+        color: "#12239E",
+      }}
+    >
+      Loading Dashboard...
+    </div>
+
+    <div
+      style={{
+        marginTop: "10px",
+        fontSize: "13px",
+        color: "#667085",
+      }}
+    >
+      Preparing alumni insights
+    </div>
+  </div>
+)}
         <iframe
+        onLoad={() => setIframeLoading(false)}
           className="report-frame"
           title="GF_India_Dashboard"
           src= {dashboardUrl}
