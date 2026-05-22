@@ -340,7 +340,6 @@ async function checkEmail() {
         html, body {
     overflow: hidden;
     overscroll-behavior: none;
-    touch-action: manipulation;  }
     .nav-button {
   background: transparent;
   border: 1px solid transparent;
@@ -480,8 +479,8 @@ async function checkEmail() {
   }
 
   .verified-view .report-frame {
-    width: 1400px !important;
-    min-width: 1400px !important;
+    width: 1200px !important;
+    min-width: 1200px !important;
 
     height: 100vh !important;
 
