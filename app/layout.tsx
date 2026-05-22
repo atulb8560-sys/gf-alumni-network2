@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: {
-    default: "GF Alumni Network",
+    default: "Alumni Network",
     template: "%s | Alumni Network",
   },
   description: "",
