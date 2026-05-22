@@ -172,7 +172,7 @@ function showSuccessBox() {
           font-size:13px;
           color:#667085;
           line-height:18px;
-          max-width:240px;
+          max-width:210px;
         ">
           Dive in and explore the data.
         </div>
@@ -185,6 +185,9 @@ function showSuccessBox() {
   successBox.style.left = "50%"
   successBox.style.transform = "translate(-50%, -50%)"
   successBox.style.padding = "18px 22px"
+  successBox.style.width = "300px"
+successBox.style.maxWidth = "calc(100vw - 32px)"
+successBox.style.boxSizing = "border-box"
   successBox.style.background =
     "linear-gradient(135deg, #F4FFF7, #EEF7F1)"
   successBox.style.border = "1px solid #A7E3BC"
