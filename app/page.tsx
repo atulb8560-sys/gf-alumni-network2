@@ -773,7 +773,7 @@ if (isVerified && isMobile) {
 >
   <img
     src="https://unsrekjwlfqdvqvvfukg.supabase.co/storage/v1/object/sign/Popup-Images/Logo%20alumni%20network.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOTQ3ZDQyNS1kYjg2LTQ1ZjItOGE3NC00OGZiOGIxODY0ZjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQb3B1cC1JbWFnZXMvTG9nbyBhbHVtbmkgbmV0d29yay5wbmciLCJpYXQiOjE3NzkyNzUxNzEsImV4cCI6MjA5NDYzNTE3MX0.BglGBovW2mB32Miabn-pTwRRcHd2x0SYM6K57rzE26w"
-    alt="GF Alumni Network"
+    alt="Alumni Network"
     style={{
       width: "186%",
       height: "176%",
