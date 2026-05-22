@@ -81,6 +81,7 @@ const [showDesktopModeWarning, setShowDesktopModeWarning] = useState(false)
 const [iframeLoading, setIframeLoading] = useState(false)
 const [showMobileSuggestion, setShowMobileSuggestion] = useState(false)
 const [successShown, setSuccessShown] = useState(false)
+const [isMobile, setIsMobile] = useState(false)
 
 useEffect(() => {
   const isTouchDevice =
@@ -107,6 +108,15 @@ useEffect(() => {
   }, 4500)
 
   return () => clearTimeout(timer)
+}, [])
+
+useEffect(() => {
+  const mobile =
+    /android|iphone|ipad|ipod|windows phone/i.test(
+      navigator.userAgent.toLowerCase()
+    )
+
+  setIsMobile(mobile)
 }, [])
 
   function handleNavClick(pageKey: string, locked: boolean) {
@@ -227,6 +237,30 @@ async function checkEmail() {
 }
 }
 
+if (isVerified && isMobile) {
+  return (
+    <div
+      style={{
+        margin: 0,
+        padding: 0,
+        width: "100vw",
+        height: "100vh",
+        overflow: "hidden",
+      }}
+    >
+      <iframe
+        src={dashboardUrl}
+        title="Power BI Dashboard"
+        style={{
+          width: "100%",
+          height: "100vh",
+          border: "none",
+        }}
+        allowFullScreen
+      />
+    </div>
+  )
+}
   return (
     <div
     className={isVerified ? "verified-view" : ""}
