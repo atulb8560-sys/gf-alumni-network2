@@ -249,6 +249,64 @@ if (isVerified && isMobile) {
         overflow: "hidden",
       }}
     >
+<iframe
+  onLoad={() => {
+    setTimeout(() => {
+      setIframeLoading(false)
+
+      if (!successShown) {
+        setSuccessShown(true)
+        showSuccessBox()
+      }
+    }, 2500)
+  }}
+  src={dashboardUrl}
+  title="Power BI Dashboard"
+  style={{
+    width: "100%",
+    height: "100vh",
+    border: "none",
+  }}
+  allowFullScreen
+/>
+
+{iframeLoading && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "#ffffff",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 999999999,
+    }}
+  >
+    <div
+      style={{
+        width: "55px",
+        height: "55px",
+        border: "5px solid #E5E7EB",
+        borderTop: "5px solid #12239E",
+        borderRadius: "50%",
+        animation: "spin 1s linear infinite",
+        marginBottom: "20px",
+      }}
+    />
+
+    <div
+      style={{
+        fontSize: "18px",
+        fontWeight: 700,
+        color: "#12239E",
+      }}
+    >
+      Loading Dashboard...
+    </div>
+  </div>
+)}
+
       <div
             style={{
               width: "55px",
@@ -261,42 +319,63 @@ if (isVerified && isMobile) {
             }}
           />
 
-           {iframeLoading && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "#ffffff",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 999999,
-          }}
-        >
-          <div
-            style={{
-              width: "55px",
-              height: "55px",
-              border: "5px solid #E5E7EB",
-              borderTop: "5px solid #12239E",
-              borderRadius: "50%",
-              animation: "spin 1s linear infinite",
-              marginBottom: "20px",
-            }}
-          />
+           <iframe
+  onLoad={() => {
+    setTimeout(() => {
+      setIframeLoading(false)
 
-          <div
-            style={{
-              fontSize: "18px",
-              fontWeight: 700,
-              color: "#12239E",
-            }}
-          >
-            Loading Dashboard...
-          </div>
-        </div>
-      )}
+      if (!successShown) {
+        setSuccessShown(true)
+        showSuccessBox()
+      }
+    }, 2500)
+  }}
+  src={dashboardUrl}
+  title="Power BI Dashboard"
+  style={{
+    width: "100%",
+    height: "100vh",
+    border: "none",
+  }}
+  allowFullScreen
+/>
+
+{iframeLoading && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "#ffffff",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 999999999,
+    }}
+  >
+    <div
+      style={{
+        width: "55px",
+        height: "55px",
+        border: "5px solid #E5E7EB",
+        borderTop: "5px solid #12239E",
+        borderRadius: "50%",
+        animation: "spin 1s linear infinite",
+        marginBottom: "20px",
+      }}
+    />
+
+    <div
+      style={{
+        fontSize: "18px",
+        fontWeight: 700,
+        color: "#12239E",
+      }}
+    >
+      Loading Dashboard...
+    </div>
+  </div>
+)}
 
       <iframe
         onLoad={() => {
