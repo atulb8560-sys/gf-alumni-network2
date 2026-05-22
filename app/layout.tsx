@@ -12,9 +12,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Alumni Network",
-};
+export const metadata = {
+  title: {
+    default: "GF Alumni Network",
+    template: "%s | GF Alumni Network",
+  },
+  description: "",
+  icons: {
+    icon: "/favicon.ico",
+  },
+}
 
 export default function RootLayout({
   children,
