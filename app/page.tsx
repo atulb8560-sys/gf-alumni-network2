@@ -81,7 +81,6 @@ const [showDesktopModeWarning, setShowDesktopModeWarning] = useState(false)
 const [iframeLoading, setIframeLoading] = useState(false)
 const [showMobileSuggestion, setShowMobileSuggestion] = useState(false)
 const [successShown, setSuccessShown] = useState(false)
-const [mobileZoom, setMobileZoom] = useState(1)
 
 useEffect(() => {
   const isTouchDevice =
@@ -470,15 +469,24 @@ async function checkEmail() {
     width: 100vw !important;
     height: 100vh !important;
     margin-top: 0px !important;
-    overflow: hidden !important;
+
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+
+    touch-action: auto !important;
+
+    -webkit-overflow-scrolling: touch !important;
   }
 
   .verified-view .report-frame {
-    width: 100vw !important;
-    height: 100vh !important;
-    min-width: 100vw !important;
-    transform: none !important;
+    width: 1200px !important;
+    min-width: 1200px !important;
+
+    height: 1000px !important;
+
     margin-left: 0px !important;
+
+    touch-action: auto !important;
   }
 }
 
@@ -500,7 +508,6 @@ async function checkEmail() {
   }
 }
         `}
-
 
       </style>
 
@@ -640,7 +647,6 @@ onMouseLeave={(e) => {
           Always a Fellow.
         </div>
       </aside>
-
 
 
       {/* LOGIN MODAL */}
@@ -897,55 +903,6 @@ onMouseLeave={(e) => {
           position: "relative",
         }}
       >
-{isVerified && (
-  <div
-    style={{
-      position: "fixed",
-      right: "12px",
-      bottom: "18px",
-      zIndex: 99999,
-      display: "flex",
-      gap: "8px",
-    }}
-  >
-    <button
-      onClick={() =>
-        setMobileZoom((z) => Math.max(0.8, z - 0.1))
-      }
-      style={{
-        width: "38px",
-        height: "38px",
-        borderRadius: "50%",
-        border: "none",
-        background: "#12239E",
-        color: "#fff",
-        fontSize: "22px",
-        fontWeight: 700,
-      }}
-    >
-      −
-    </button>
-
-    <button
-      onClick={() =>
-        setMobileZoom((z) => Math.min(1.8, z + 0.1))
-      }
-      style={{
-        width: "38px",
-        height: "38px",
-        borderRadius: "50%",
-        border: "none",
-        background: "#12239E",
-        color: "#fff",
-        fontSize: "22px",
-        fontWeight: 700,
-      }}
-    >
-      +
-    </button>
-  </div>
-)}
-
         {iframeLoading && (
   <div
     style={{
@@ -1012,18 +969,11 @@ onMouseLeave={(e) => {
           src= {dashboardUrl}
           style={{
   border: "none",
-
   width: isVerified ? "100vw" : "84vw",
-
   height: isVerified ? "100vh" : "84vh",
-
-  transform: isVerified
-    ? `scale(${mobileZoom})`
-    : "scale(1.23)",
-
-  transformOrigin: "top left",
-
-  marginLeft: "-45px",
+  transform: isVerified ? "none" : "scale(1.23)",
+  transformOrigin: "top center",
+  marginLeft : "-45px"
 }}
             
           allowFullScreen
@@ -1032,3 +982,5 @@ onMouseLeave={(e) => {
     </div>
   )
 }
+
+
