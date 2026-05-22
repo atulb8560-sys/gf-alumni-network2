@@ -1025,6 +1025,53 @@ onMouseLeave={(e) => {
   </div>
 )}
 
+{iframeLoading && (
+  <div
+    style={{
+      position: "absolute",
+      inset: 0,
+      background: "#ffffff",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 9999,
+    }}
+  >
+    <div
+      style={{
+        width: "55px",
+        height: "55px",
+        border: "5px solid #E5E7EB",
+        borderTop: "5px solid #12239E",
+        borderRadius: "50%",
+        animation: "spin 1s linear infinite",
+        marginBottom: "20px",
+      }}
+    />
+
+    <div
+      style={{
+        fontSize: "18px",
+        fontWeight: 700,
+        color: "#12239E",
+      }}
+    >
+      Loading Dashboard...
+    </div>
+
+    <div
+      style={{
+        marginTop: "10px",
+        fontSize: "13px",
+        color: "#667085",
+      }}
+    >
+      Preparing alumni insights
+    </div>
+  </div>
+)}
+
         <iframe
         onLoad={() => {
           setDashboardLoading(false)
