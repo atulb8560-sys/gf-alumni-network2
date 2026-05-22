@@ -249,7 +249,66 @@ if (isVerified && isMobile) {
         overflow: "hidden",
       }}
     >
+      <div
+            style={{
+              width: "55px",
+              height: "55px",
+              border: "5px solid #E5E7EB",
+              borderTop: "5px solid #12239E",
+              borderRadius: "50%",
+              animation: "spin 1s linear infinite",
+              marginBottom: "20px",
+            }}
+          />
+
+           {iframeLoading && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "#ffffff",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 999999,
+          }}
+        >
+          <div
+            style={{
+              width: "55px",
+              height: "55px",
+              border: "5px solid #E5E7EB",
+              borderTop: "5px solid #12239E",
+              borderRadius: "50%",
+              animation: "spin 1s linear infinite",
+              marginBottom: "20px",
+            }}
+          />
+
+          <div
+            style={{
+              fontSize: "18px",
+              fontWeight: 700,
+              color: "#12239E",
+            }}
+          >
+            Loading Dashboard...
+          </div>
+        </div>
+      )}
+
       <iframe
+        onLoad={() => {
+          setTimeout(() => {
+            setIframeLoading(false)
+
+            if (!successShown) {
+              setSuccessShown(true)
+              showSuccessBox()
+            }
+          }, 2500)
+        }}
         src={dashboardUrl}
         title="Power BI Dashboard"
         style={{
@@ -262,6 +321,7 @@ if (isVerified && isMobile) {
     </div>
   )
 }
+
   return (
     <div
     className={isVerified ? "verified-view" : ""}
@@ -285,6 +345,51 @@ if (isVerified && isMobile) {
       }}
       
     >
+
+      {iframeLoading && (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "#ffffff",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            style={{
+              width: "55px",
+              height: "55px",
+              border: "5px solid #E5E7EB",
+              borderTop: "5px solid #12239E",
+              borderRadius: "50%",
+              animation: "spin 1s linear infinite",
+              marginBottom: "20px",
+            }}
+          />
+
+          <div style={{ fontSize: "18px", fontWeight: 700, color: "#12239E" }}>
+            Loading Dashboard...
+          </div>
+
+          <div style={{ marginTop: "10px", fontSize: "13px", color: "#667085" }}>
+            Preparing alumni insights
+          </div>
+        </div>
+      )}
+
+      <style>
+        {`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}
+      </style>
+
 {showMobileSuggestion && (
   <div
     style={{
@@ -1024,54 +1129,6 @@ onMouseLeave={(e) => {
     </div>
   </div>
 )}
-
-{iframeLoading && (
-  <div
-    style={{
-      position: "absolute",
-      inset: 0,
-      background: "#ffffff",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      zIndex: 9999,
-    }}
-  >
-    <div
-      style={{
-        width: "55px",
-        height: "55px",
-        border: "5px solid #E5E7EB",
-        borderTop: "5px solid #12239E",
-        borderRadius: "50%",
-        animation: "spin 1s linear infinite",
-        marginBottom: "20px",
-      }}
-    />
-
-    <div
-      style={{
-        fontSize: "18px",
-        fontWeight: 700,
-        color: "#12239E",
-      }}
-    >
-      Loading Dashboard...
-    </div>
-
-    <div
-      style={{
-        marginTop: "10px",
-        fontSize: "13px",
-        color: "#667085",
-      }}
-    >
-      Preparing alumni insights
-    </div>
-  </div>
-)}
-
         <iframe
         onLoad={() => {
           setDashboardLoading(false)
