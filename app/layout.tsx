@@ -12,26 +12,22 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Alumni Network",
-  description: "",
 
   openGraph: {
     title: "Alumni Network",
-    description: "",
     siteName: "Alumni Network",
   },
 
   twitter: {
     title: "Alumni Network",
-    description: "",
   },
 
   icons: {
     icon: "/favicon.ico",
   },
 }
-
 
 export default function RootLayout({
   children,
