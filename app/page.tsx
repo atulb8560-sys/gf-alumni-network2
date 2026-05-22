@@ -75,7 +75,7 @@ export default function Home() {
   const [isVerified, setIsVerified] = useState(false)
   const [activePage, setActivePage] = useState("overview")
   const [dashboardUrl, setDashboardUrl] = useState(
-  "https://app.powerbi.com/view?r=eyJrIjoiMDc2NzI3MDMtNjFjMS00NDQxLWI2OTMtYWRhZTU5NmI4ODRlIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
+  "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
 ) 
 const [showDesktopModeWarning, setShowDesktopModeWarning] = useState(false)
 const [iframeLoading, setIframeLoading] = useState(false)
@@ -943,7 +943,7 @@ onMouseLeave={(e) => {
   </div>
 )}
         <iframe
-  onLoad={() => {
+        onLoad={() => {
   if (isVerified) {
     setTimeout(() => {
       setIframeLoading(false)
@@ -952,7 +952,7 @@ onMouseLeave={(e) => {
         setSuccessShown(true)
         showSuccessBox()
       }
-    }, 2000)
+    }, 2500)
   } else {
     setIframeLoading(false)
   }
