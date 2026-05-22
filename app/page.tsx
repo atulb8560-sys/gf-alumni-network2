@@ -6,9 +6,9 @@ import { supabase } from "@/lib/supabase"
 
 const POWERBI_URL =
   "https://app.powerbi.com/view?r=eyJrIjoiNmVlZTQ4OTItOGE4Ni00N2ExLWE0MGMtYzNkMjAzMWE5N2FkIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
-  const VERIFIED_POWERBI_URL =
-  "https://app.powerbi.com/view?r=eyJrIjoiMDc2NzI3MDMtNjFjMS00NDQxLWI2OTMtYWRhZTU5NmI4ODRlIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
 
+  const FULL_DASHBOARD_URL =
+  "https://app.powerbi.com/view?r=eyJrIjoiMDc2NzI3MDMtNjFjMS00NDQxLWI2OTMtYWRhZTU5NmI4ODRlIiwidCI6Ijk3MzgwNTFjLWFhNjMtNDJmOS1hNTJjLWI1N2ZlM2NjNzU3NSIsImMiOjEwfQ%3D%3D"
   
 const navItems = [
   {
@@ -219,7 +219,7 @@ async function checkEmail() {
   setIsVerified(true)
   setIframeLoading(true)
 
-  
+  setDashboardUrl(FULL_DASHBOARD_URL)
 
 }, 1200)
 
@@ -957,27 +957,22 @@ onMouseLeave={(e) => {
   height: isVerified ? "100vh" : "84vh",
   transform: isVerified ? "none" : "scale(1.23)",
   transformOrigin: "top center",
-  marginLeft : "-45px",
-  display: isVerified ? "none" : "block",
+  marginLeft : "-45px"
 }}
             
           allowFullScreen
         />
         <iframe
-  src={VERIFIED_POWERBI_URL}
-  title=""
+  src={FULL_DASHBOARD_URL}
+  title="Preload_Full_Dashboard"
   style={{
-    border: "none",
-    width: "100vw",
-    height: "100vh",
-    transform: "none",
-    transformOrigin: "top center",
-    marginLeft: "0px",
-    display: isVerified ? "block" : "none",
     position: "absolute",
-    inset: 0,
+    width: "1px",
+    height: "1px",
+    opacity: 0,
+    pointerEvents: "none",
+    border: "none",
   }}
-  allowFullScreen
 />
       </main>
     </div>
