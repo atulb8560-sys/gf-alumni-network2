@@ -425,7 +425,7 @@ async function checkEmail() {
 
   .clear-btn {
     height: 26px !important;
-    font-size: 9px !important;
+    font-size: 10px !important;
     margin: 0 6px 18px !important;
     margin-bottom: 154px !important;
     border-radius: 5px !important;
@@ -461,6 +461,7 @@ async function checkEmail() {
 }
 
 @media (max-width: 768px) {
+
   .verified-view .desktop-sidebar {
     display: none !important;
   }
@@ -469,15 +470,25 @@ async function checkEmail() {
     width: 100vw !important;
     height: 100vh !important;
     margin-top: 0px !important;
-    overflow: hidden !important;
+
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+
+    touch-action: auto !important;
+
+    -webkit-overflow-scrolling: touch !important;
   }
 
   .verified-view .report-frame {
-    width: 100vw !important;
+    width: 1400px !important;
+    min-width: 1400px !important;
+
     height: 100vh !important;
-    min-width: 100vw !important;
+
     transform: none !important;
     margin-left: 0px !important;
+
+    touch-action: auto !important;
   }
 }
 
@@ -500,7 +511,7 @@ async function checkEmail() {
 }
         `}
 
-        
+
       </style>
 
       {/* DESKTOP SIDEBAR */}
