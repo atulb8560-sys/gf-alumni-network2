@@ -82,6 +82,7 @@ const [iframeLoading, setIframeLoading] = useState(false)
 const [showMobileSuggestion, setShowMobileSuggestion] = useState(false)
 const [successShown, setSuccessShown] = useState(false)
 const [isMobile, setIsMobile] = useState(false)
+const [dashboardLoading, setDashboardLoading] = useState(true)
 
 useEffect(() => {
   const isTouchDevice =
@@ -987,8 +988,46 @@ onMouseLeave={(e) => {
     </div>
   </div>
 )}
+{dashboardLoading && (
+  <div
+    style={{
+      position: "absolute",
+      inset: 0,
+      background: "#ffffff",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 9999,
+    }}
+  >
+    <div
+      style={{
+        width: "45px",
+        height: "45px",
+        border: "4px solid #E5E7EB",
+        borderTop: "4px solid #12239E",
+        borderRadius: "50%",
+        animation: "spin 1s linear infinite",
+      }}
+    />
+
+    <div
+      style={{
+        marginTop: "18px",
+        fontSize: "15px",
+        fontWeight: 600,
+        color: "#12239E",
+      }}
+    >
+      Loading Dashboard...
+    </div>
+  </div>
+)}
+
         <iframe
         onLoad={() => {
+          setDashboardLoading(false)
   if (isVerified) {
     setTimeout(() => {
       setIframeLoading(false)
