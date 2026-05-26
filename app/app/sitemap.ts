@@ -3,6 +3,8 @@ export default function sitemap() {
     {
       url: "https://takshashilaeducationfoundation.org",
       lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1,
     },
   ];
 }
