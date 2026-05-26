@@ -14,15 +14,34 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Alumni Network",
+  title: "Alumni Network | Takshashila Education Foundation",
+
+  description:
+    "Connect with alumni and fellows across India for networking, mentorship, collaboration, jobs, and opportunities in the social impact sector.",
+
+  keywords: [
+    "Takshashila Education Foundation",
+    "Alumni Network",
+    "Gandhi Fellowship Alumni",
+    "Social Impact Network",
+    "Education Fellowship",
+    "NGO Network India",
+  ],
 
   openGraph: {
-    title: "Alumni Network",
-    siteName: "Alumni Network",
+    title: "Alumni Network | Takshashila Education Foundation",
+
+    description:
+      "Connect with alumni and fellows across India for networking, mentorship, collaboration, jobs, and opportunities in the social impact sector.",
+
+    siteName: "Takshashila Education Foundation",
   },
 
   twitter: {
-    title: "Alumni Network",
+    title: "Alumni Network | Takshashila Education Foundation",
+
+    description:
+      "Connect with alumni and fellows across India for networking, mentorship, collaboration, jobs, and opportunities in the social impact sector.",
   },
 
   icons: {
